@@ -1,4 +1,4 @@
-# jmjk_project1
+# chatGPT
 
 ## Project setup
 ```
