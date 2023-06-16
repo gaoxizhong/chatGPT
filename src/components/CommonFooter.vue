@@ -2,7 +2,7 @@
   <footer :class="is_pom?'is_pom':''">
     <div class="content-box">
       <!-- <span>@Copyright 2020.</span> -->
-      <span>北京菁苗健康有限公司技术支持</span>
+      <span>苏州融乘数科公司技术支持</span>
       <!-- <span>All Rights Reserved.</span> -->
       <!-- <span>京ICP备2021023471号</span> -->
     </div>

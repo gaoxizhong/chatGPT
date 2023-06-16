@@ -3,21 +3,6 @@
   <div :style="login_bgurl" class="page-box">
     <div v-if="isLoginModule">
       <div :class="is_sign?'right-panel-active':'' " class="container" id="container" >
-        <!-- 注册 -->
-        <div class="form-container sign-up-container">
-          <form @submit.prevent="RegisterUserInfo" autocomplete="off">
-            <h1>创建新账号</h1>
-            <span style="margin-top:4px;">请使用您的手机号进行注册</span>
-            <el-input v-model="newuser.phone" name="phone" placeholder="请输入手机号"></el-input>
-            <div class="input-box">
-              <el-input class="input" maxlength="4" placeholder="验证码" v-model="newuser.code" name="code"/>
-              <div class="send-vcode-btn" :style="{'color': isDisable?'#ababab':'#007fff'}" :disabled="isDisable" @click.stop="click_code(1)">{{zc_statusMsg}}</div>
-            </div>
-            <el-input type="password" v-model="newuser.password" name="password" placeholder="请输入密码"></el-input>
-            <button type="submit">注册</button>
-          </form>
-        </div>
-        <!-- 注册 -->
         <!-- 登录 -->
         <div class="form-container sign-in-container">
           <form @submit.prevent="LoginUserInfo" autocomplete="off">
@@ -31,7 +16,7 @@
             </div>
             <el-input type="password" v-model="user.password" name="password" placeholder="请输入密码"  v-else></el-input>
             <div class="sign-a-div">
-              <a href="javascript:0;">如没有账号，请先注册</a>
+              <a href="javascript:0;">没有账号?<span @click="signUp()">去注册</span></a>
               <!-- <a href="javascript:0;" class="sign-a-wjmm" @click.stop="goToForgetModule"  v-if="!is_yzmSign">忘记密码</a> -->
             </div>
             <button type="submit">登录</button>
@@ -50,11 +35,27 @@
               </ul>
             </section>
           </form>
-
-
-
         </div>
         <!-- 登录 -->
+        <!-- 注册 -->
+        <div class="form-container sign-up-container">
+          <form @submit.prevent="RegisterUserInfo" autocomplete="off">
+            <h1>创建新账号</h1>
+            <span style="margin-top:4px;">请使用您的手机号进行注册</span>
+            <el-input v-model="newuser.phone" name="phone" placeholder="请输入手机号"></el-input>
+            <div class="input-box">
+              <el-input class="input" maxlength="4" placeholder="验证码" v-model="newuser.code" name="code"/>
+              <div class="send-vcode-btn" :style="{'color': isDisable?'#ababab':'#007fff'}" :disabled="isDisable" @click.stop="click_code(1)">{{zc_statusMsg}}</div>
+            </div>
+            <el-input type="password" v-model="newuser.password" name="password" placeholder="请输入密码"></el-input>
+            <div class="sign-a-div">
+              <a href="javascript:0;"><span @click="signIn()">去登录</span></a>
+            </div>
+            <button type="submit">注册</button>
+          </form>
+        </div>
+        <!-- 注册 -->
+
 
         <div class="overlay-container">
           <div class="overlay">
@@ -64,7 +65,7 @@
               <button class="ghost" id="signIn"  @click="signIn()">登录</button>
             </div>
             <div class="overlay-panel overlay-right">
-              <h1>ChatGPT</h1>
+              <h1>智能创作平台</h1>
               <p>输入您的个人详细信息进行注册</p>
               <button class="ghost" id="signUp" @click="signUp()">注册</button>
             </div>
@@ -116,11 +117,13 @@ export default {
         phone: '',
         password:'',
         code:'',
+        user_tag: 2
       },
       user: {
         phone: '',
         password:'',
-        code:''
+        code:'',
+        user_tag: 2
       },
       is_sign: false,
       stateurl:'',
@@ -440,25 +443,21 @@ export default {
             onClose(){
               // commit：同步操作，数据提交至 mutations ，可用于读取用户信息写到缓存里
               // 存储token到ls
-              const token = data.token;
-              // window.localStorage.setItem('setToken',token);
-                that.$store.dispatch("setToken",token);
-              // .dispatch 执行异步操作,数据提交至 actions
-              if (that.$store.state.token) {
-                window.localStorage.setItem('setUser',data.phone);
-                window.localStorage.setItem('uid',data.uid);
-                that.$store.dispatch("setUser",data.phone);
-                that.$store.dispatch("setIsAuthenticated",true)
-                let stateurl = that.stateurl;
-                if(stateurl){
-                  that.$router.push({path:decodeURIComponent(stateurl)});
-                }else{
-                  that.getNavList();
-                }
-              } else {
+              const infoData = data;
+              console.log(infoData)
+              window.localStorage.setItem('token',infoData.token);
+              window.localStorage.setItem('uid',infoData.uid);
+              window.localStorage.setItem('phone',infoData.phone);
+            // .dispatch 执行异步操作,数据提交至 actions
+              that.$store.dispatch("setToken",infoData.token);
+              // that.$store.dispatch("setUser",infoData.phone);
+              that.$store.dispatch("setIsAuthenticated",true)
+              let stateurl = that.stateurl;
+              if(stateurl){
+                that.$router.push({path:decodeURIComponent(stateurl)});
+              }else{
                 that.$router.push('/');
               }
-
 
             }
           });
@@ -547,7 +546,7 @@ export default {
   button:hover {
     cursor: pointer;
   }
-  form {
+  .form-container form {
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
@@ -567,13 +566,16 @@ export default {
    margin: 5px 0;
   }
   .container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    position: relative;
-    overflow: hidden;
     width: 768px;
     max-width: 100%;
+    height: auto;
     min-height: 528px;
   }
   .form-container {
@@ -640,7 +642,7 @@ export default {
     left: -100%;
     height: 100%;
     width: 200%;
-      transform: translateX(0);
+    transform: translateX(0);
     transition: transform 0.6s ease-in-out;
   }
   .container.right-panel-active .overlay {
@@ -697,12 +699,6 @@ export default {
       color: #3c97bf;
       text-decoration: none;
   }
-  .container{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-  }
   .sign-a-div{
     width: 100%;
     display: flex;
@@ -712,6 +708,10 @@ export default {
   .sign-a-div>a{
     font-size: 13px;
   }
+  .sign-a-div>a span{
+    padding: 2px 8px;
+    color: #3EACFF;
+    }
   .sign-a-wjmm{
     color: #3EACFF;
     font-weight: bold;
@@ -870,4 +870,37 @@ export default {
     margin: 0;
     padding-top:4px;
   }
+</style>
+<style lang="scss" scoped>
+  @media screen and (max-width: 768px){
+    .page-box{
+      background-image: none !important;
+    }
+    .overlay-container{
+      display: none;
+    }
+    .container{
+      width: 100%;
+      min-height: 446px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px 1px #1b46722a;
+    }
+    button{
+      margin-top: 6px;
+      padding: 10px 80px;
+    }
+    .sign-in-container,.sign-up-container{
+      width: 100%;
+    }
+    .form-container form{
+      padding: 0 30px;
+    }
+    .container.right-panel-active .sign-up-container{
+      transform: translateX(0);
+    }
+    .container.right-panel-active .sign-in-container{
+      transform: translateX(0);
+    }
+  }
+
 </style>

@@ -4,8 +4,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import './assets/js/rem'
 
-import { Result,Footer,DatePicker,Radio,DropdownItem,RadioButton,RadioGroup,CheckboxGroup,Checkbox,Table,TableColumn,Breadcrumb,BreadcrumbItem,TabPane,Tabs,Switch,Pagination,Form,FormItem,Dialog,Card,Autocomplete,Empty,Dropdown,Loading,Button, Select,Container,Aside,Header,Main,Menu,MenuItem,MenuItemGroup,Submenu,Input,Message,Option,Row,Col,Collapse,CollapseItem, DropdownMenu   } from 'element-ui';
+import { MessageBox,Result,Footer,DatePicker,Radio,DropdownItem,RadioButton,RadioGroup,CheckboxGroup,Checkbox,Table,TableColumn,Breadcrumb,BreadcrumbItem,TabPane,Tabs,Switch,Pagination,Form,FormItem,Dialog,Card,Autocomplete,Empty,Dropdown,Loading,Button, Select,Container,Aside,Header,Main,Menu,MenuItem,MenuItemGroup,Submenu,Input,Message,Option,Row,Col,Collapse,CollapseItem, DropdownMenu   } from 'element-ui';
 Vue.config.productionTip = false
 Vue.use(Loading);
 Vue.use(Result);
@@ -53,6 +54,9 @@ Vue.use(Switch);
 Vue.prototype.axios = axios;
 Vue.prototype.$message = Message;
 Vue.prototype.$loading = Loading.service;
+Vue.prototype.$alert = MessageBox;
+Vue.prototype.$prompt = MessageBox.prompt;
+
 Vue.prototype.$getViewportSize = function() {
   return {
     width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,

@@ -51,7 +51,7 @@ module.exports = {
     proxy: {
         '/api': {
             // 此处的写法，目的是为了 将 /api 替换成 域名
-            target: 'http://49.233.2.47:9000',
+            target: 'http://3.15.12.98:5001',
             // 允许跨域
             changeOrigin: true,
             ws: true,

@@ -102,15 +102,14 @@ header{
 export default {
   data() {
     return {
-      phone:'',
+      phone: window.localStorage.getItem('phone'),
     }
   },
   created(){
 
   },
   mounted(){
-    let phone = window.localStorage.getItem('setUser');
-    this.phone = phone;
+
   },
   methods:{
     toLogin(){

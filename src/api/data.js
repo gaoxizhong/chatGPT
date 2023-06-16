@@ -41,9 +41,57 @@ export const getRevise = (params) =>{
   })
 }
 // 问答接口
-export const getQuestion = (params) =>{
+export const chatgptAnswer = (params) =>{
   return axios.request({
-    url:'/zsk/qw',
+    url:'/chatgpt-answer',
+    method: 'post',
+    data: params
+  })
+}
+// 获取支付列表
+export const getOrderPayList = (params) =>{
+  return axios.request({
+    url:'/chatgpt-recharge-list',
+    method: 'post',
+    data: params
+  })
+}
+// 获取支付接口
+export const getOrderPay = (params) =>{
+  return axios.request({
+    url:'/wxpay',
+    method: 'post',
+    data: params
+  })
+}
+// 监听支付轮询
+export const get_order_status = (params) =>{
+  return axios.request({
+    url:'/order-detail',
+    method: 'post',
+    data: params
+  })
+}
+// 获取用户次数
+export const get_chatgpt_num = (params) =>{
+  return axios.request({
+    url:'/chatgpt-num',
+    method: 'post',
+    data: params
+  })
+}
+// 提交邀请码
+export const setInviteCode = (params) =>{
+  return axios.request({
+    url:'/bind-invite-code',
+    method: 'post',
+    data: params
+  })
+}
+// 问答历史记录
+export const getHistoryList = (params) =>{
+  return axios.request({
+    url:'/bind-history-list',
     method: 'post',
     data: params
   })
