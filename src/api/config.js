@@ -2,9 +2,9 @@ export default {
     title:'admin',
     baseURL: {
         // 开发
-        dev: 'https://jm.jiankangche.cn/jmjk/',
+        dev: 'http://182.43.12.243:8981/jmjk/',
         // 生产
-        pro: 'https://jm.jiankangche.cn/jmjk/',
+        pro: 'http://182.43.12.243:8981/jmjk/',
 
     }
 }
