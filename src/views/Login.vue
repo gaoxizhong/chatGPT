@@ -63,11 +63,13 @@
               <h1>欢迎回来！</h1>
               <p>请使用您的个人信息登录</p>
               <button class="ghost" id="signIn"  @click="signIn()">登录</button>
+              <p class="gs-name-box">融乘数科</p>
             </div>
             <div class="overlay-panel overlay-right">
               <h1>智能创作平台</h1>
               <p>输入您的个人详细信息进行注册</p>
               <button class="ghost" id="signUp" @click="signUp()">注册</button>
+              <p class="gs-name-box">融乘数科</p>
             </div>
           </div>
         </div>
@@ -545,6 +547,16 @@ export default {
   }
   button:hover {
     cursor: pointer;
+  }
+  .gs-name-box{
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-weight: bold;
   }
   .form-container form {
     background-color: #FFFFFF;
