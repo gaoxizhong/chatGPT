@@ -86,7 +86,7 @@
       return{
         uid: window.localStorage.getItem('uid'),
         viewHeight:'',
-        setMealList:[],
+        setMealList:[{},{},{},{},{},{},{},{}],
         dialogVisible: false,
         checkInfo:{},
         codeurl: "",//回调url
