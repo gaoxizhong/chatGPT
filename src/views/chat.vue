@@ -377,7 +377,7 @@ export default {
       // SSE接收 如果跨越 添加第二个参数 { withCredentials: true }
 
 
-      that.source = new EventSource(`http://18.221.12.198:5001/chatstream?content=${originMessage}`,{ withCredentials: true });
+      that.source = new EventSource(`http://18.221.12.198:5003/chatstream?content=${originMessage}`,{ withCredentials: true });
       console.log(that.source);
       // sse 连接开启时回调函数
       that.source.onopen = function (event) {
