@@ -1,6 +1,6 @@
 <template>
   <div class="center-box">
-    <div id="header" class="header clearfix">{{loading?'对方正在输入...':'智能创作助手问答'}}</div>
+    <div id="header" class="header clearfix">{{loading?'对方正在输入...':'自猎彗星助手问答'}}</div>
     <div id="content" class="scrollbar" ref="scrollbar">
       <dl class="messages" style="margin-bottom: 12px;">
         <dt><h4><a href="javascript:0;" id="show-history"></a></h4></dt>
@@ -226,8 +226,8 @@ export default {
     this.viewWidth = getViewportSize.width;
     this.msgList.push({
       isme: false,
-      content:'你好,我是智能创作助手,请问有什么问题可以帮助您?',
-      name:'智能创作助手',
+      content:'你好,我是自猎彗星助手,请问有什么问题可以帮助您?',
+      name:'自猎彗星助手',
       time: this.getCurrentTime(),
     })
     // 历史记录
@@ -294,7 +294,7 @@ export default {
             newArr.push({
               isme: false,
               content: ele.answer,
-              name:'智能创作助手',
+              name:'自猎彗星助手',
               time: that.getCurrentTime(ele.createtime),
             })
           });
@@ -335,15 +335,15 @@ export default {
     async onSendClcik(){
       let that = this;
       // 调用方法获取用户剩余次数
-      const res_number = await get_chatgpt_num({ uid:that.uid });
-      if(res_number.data.data.chatgpt_num <= 0){
-        that.$alert('余额不足，去「充值中心」充值获取次数！', '提示', {
-          confirmButtonText: '去充值',
-        }).then( () =>{
-          that.$router.push({path:"/cost"});
-        })
-        return
-      }
+      // const res_number = await get_chatgpt_num({ uid:that.uid });
+      // if(res_number.data.data.chatgpt_num <= 0){
+      //   that.$alert('余额不足，去「充值中心」充值获取次数！', '提示', {
+      //     confirmButtonText: '去充值',
+      //   }).then( () =>{
+      //     that.$router.push({path:"/cost"});
+      //   })
+      //   return
+      // }
 
       let originMessage = that.originMessage;
 
@@ -369,7 +369,7 @@ export default {
         isme: false,
         // content: res.data.replaceAll("\n\n","<br>"),
         content: '',
-        name:'智能创作助手',
+        name:'自猎彗星助手',
         time: this.getCurrentTime(),
       });
    
@@ -397,7 +397,7 @@ export default {
         that.source.close();
         that.is_retun = true;
         that.loading = false;
-        that.$emit('setTitleTxet','智能创作助手问答')
+        that.$emit('setTitleTxet','自猎彗星助手问答')
         let arrinfo = that.msgList[that.msgList.length - 1];
         if( !arrinfo.isme && arrinfo.content != '' ){
           //后端返接口 减次数

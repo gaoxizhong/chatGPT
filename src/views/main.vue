@@ -9,7 +9,7 @@
       <el-aside width="auto">
         <a href="javascript:0;" class="isCollapse-box" @click="menu_btn">
           <img src="../assets/image/isCollapse.png" class="isCollapse-i" />
-          <span class="isCollapse-s" v-if="isColl">智能创作平台</span>
+          <span class="isCollapse-s" v-if="isColl">自猎彗星</span>
         </a>
         <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="!isColl" router unique-opened>
           <el-menu-item index="/chat" @click="menu_btn1">
@@ -20,10 +20,10 @@
             <i class="el-icon-user-solid"></i>
             <span slot="title">个人中心</span>
           </el-menu-item>
-          <el-menu-item index="/cost" @click="menu_btn1">
+          <!-- <el-menu-item index="/cost" @click="menu_btn1">
             <i class="el-icon-coin"></i>
             <span slot="title">费用中心</span>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item @click="menu_btn2">
             <i class="el-icon-service"></i>
             <span slot="title">联系客服</span>

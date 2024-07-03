@@ -66,7 +66,7 @@
               <p class="gs-name-box">融乘数科</p>
             </div>
             <div class="overlay-panel overlay-right">
-              <h1>智能创作平台</h1>
+              <h1>自猎彗星</h1>
               <p>输入您的个人详细信息进行注册</p>
               <button class="ghost" id="signUp" @click="signUp()">注册</button>
               <p class="gs-name-box">融乘数科</p>

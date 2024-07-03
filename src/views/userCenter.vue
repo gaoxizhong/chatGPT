@@ -9,7 +9,7 @@
             <span>{{ phone }}</span>
           </div>
           <div class="num-box">
-            <div>剩余次数：{{number}}次</div>
+            <!-- <div>剩余次数：{{number}}次</div> -->
           </div>
           <div class="footer-box">
             <span @click="toLogin">退出</span>
