@@ -42,7 +42,7 @@ const routes = [
         name: 'chat',
         component: () => import('@/views/chat.vue'),
         hidden: true,
-        meta: { title: '新的创作',keepAlive:true },
+        meta: { title: '新的对话',keepAlive:true },
       },
       {
         path: '/user-center',

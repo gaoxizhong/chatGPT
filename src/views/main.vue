@@ -14,7 +14,7 @@
         <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="!isColl" router unique-opened>
           <el-menu-item index="/chat" @click="menu_btn1">
             <i class="el-icon-document-copy"></i>
-            <span slot="title">新的创作</span>
+            <span slot="title">新的对话</span>
           </el-menu-item>
           <el-menu-item index="/user-center" @click="menu_btn1">
             <i class="el-icon-user-solid"></i>
