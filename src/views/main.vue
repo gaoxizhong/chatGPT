@@ -16,20 +16,20 @@
             <i class="el-icon-document-copy"></i>
             <span slot="title">新的对话</span>
           </el-menu-item>
-          <el-menu-item index="/user-center" @click="menu_btn1">
+          <!-- <el-menu-item index="/user-center" @click="menu_btn1">
             <i class="el-icon-user-solid"></i>
             <span slot="title">个人中心</span>
-          </el-menu-item>
+          </el-menu-item> -->
           <!-- <el-menu-item index="/cost" @click="menu_btn1">
             <i class="el-icon-coin"></i>
             <span slot="title">费用中心</span>
           </el-menu-item> -->
-          <el-menu-item @click="menu_btn2">
+          <!-- <el-menu-item @click="menu_btn2">
             <i class="el-icon-service"></i>
             <span slot="title">联系客服</span>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-menu>
-        <a href="javascript:0;" class="collapse-footer-box" @click="goToUserCenter">
+        <a href="javascript:0;" class="collapse-footer-box">
           <img src="../assets/image/img-user.jpg" alt="" class="collapse-footer-img" v-if="isColl"/>
           <div class="collapse-footer-r" v-if="isColl">
             <span>{{ phone }}</span>
@@ -84,7 +84,7 @@
     },
     data(){
       return {
-        isColl: false,
+        isColl: true,
         headerisColl: false, // 手机端判断
         phone: window.localStorage.getItem('phone'),
         viewHeight:'',
